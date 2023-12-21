@@ -1,13 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
 const Login = () => {
-    const handleLogin = e =>{
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+    const { logInUser } = useContext(AuthContext)
+
+    const handleLogin = e => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        setError('')
+
+        logInUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                form.reset()
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
     }
+
+
     return (
         <div className='reg py-10 px-3'>
             <div className='container mx-auto flex justify-center items-center'>
@@ -27,6 +48,11 @@ const Login = () => {
                                 <span className="label-text text-white">Password</span>
                             </label>
                             <input type="password" placeholder="password" name='password' className="input input-bordered " required />
+                        </div>
+                        <div className='mt-2'>
+                            {
+                                error && <p className='text-red-400'>{error}</p>
+                            }
                         </div>
                         <div className="form-control mt-6">
                             <input className='my-btn w-full rounded-md hover:bg-[#ABFC2F]' type="submit" value="Log In" />

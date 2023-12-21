@@ -1,13 +1,48 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
-    const handleSignUp = e =>{
+    const [error, setError] = useState('')
+    const {createUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    const handleSignUp = e => {
         e.preventDefault()
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
         console.log(name, email, password);
+
+        setError('')
+
+        if (!/[$#@%&*]/.test(password)) {
+            setError('Password should be a spacial character')
+            return
+        }
+        if (password.length < 6) {
+            setError('Password should be six character')
+            return
+        }
+        if (!/[A-Z]/.test(password)) {
+            setError('Password should be one upper case letter')
+            return
+        }
+
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                form.reset()
+                navigate('/')
+                updateProfile(result.user, {
+                    displayName: name
+                })
+            })
+            .catch(error =>{
+                setError(error.message)
+            })
     }
     return (
         <div className='reg py-10 px-3'>
@@ -35,11 +70,16 @@ const Signup = () => {
                             </label>
                             <input type="password" placeholder="password" name='password' className="input input-bordered " required />
                         </div>
+                        <div className='mt-2'>
+                            {
+                                error && <p className='text-red-400'>{error}</p>
+                            }
+                        </div>
                         <div className="form-control mt-6">
                             <input className='my-btn w-full rounded-md hover:bg-[#ABFC2F]' type="submit" value="Sign Up" />
                         </div>
                         <p className="text-white">
-                            Already have account! <Link className='text-[#ABFC2F]'  to={'/login'}>Log In</Link>
+                            Already have account! <Link className='text-[#ABFC2F]' to={'/login'}>Log In</Link>
                         </p>
                     </form>
                 </div>
