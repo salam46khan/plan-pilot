@@ -1,5 +1,5 @@
-.footer{
-    background: linear-gradient(#000000a9, #0006), url('../../assets/footer.jpg');
+.reg{
+    background: linear-gradient(#00000081, #0006), url('../../../assets/login.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

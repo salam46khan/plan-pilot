@@ -1,13 +1,10 @@
-import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
+import Banner from "../../Shared/Banner";
 
 const Home = () => {
     return (
-        <div className="bg-gray-200">
-            <p>home Page</p>
-            <Link to={'/'} className="my-btn flex">
-                    home
-            </Link>
+        <div>
+            <Banner></Banner>
         </div>
     );
 };

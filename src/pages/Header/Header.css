@@ -1,0 +1,17 @@
+#navbar a.active{
+    background:greenyellow;
+    color: #000;
+}
+#navbar a{
+    border-radius: 25px;
+    margin: 2px;
+    font-size: 20px;
+}
+#navbar a:hover{
+    background:#e1ffe1;
+
+}
+#navbar a:focus{
+    background:greenyellow;
+    color: #000;
+}
