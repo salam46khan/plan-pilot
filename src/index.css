@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad&family=Outfit:wght@700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.my-btn {
+  padding: 8px 16px;
+  border: 1px solid greenyellow;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: greenyellow;
+  transition: 0.2s;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-block;
+  max-width: 180px;
+}
+
+.my-btn:hover {
+  color: #000;
+}
+
+.my-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(15deg);
+  height: 300%;
+  width: 0%;
+  background: greenyellow;
+  z-index: -1;
+  transition: 0.3s;
+}
+
+.my-btn:hover::after {
+  width: 120%;
+}
+
+
+.btn-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.round-btn{
+  height: 35px;
+  width: 35px;
+  /* border: 1px solid greenyellow; */
+  background: #acff2fa1;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  color: greenyellow;
+  transition: ease 0.3s;
+}
+.round-btn:hover{
+  background: greenyellow;
+  color: #000;
+}
+
+
+
+.footer-link li a{
+  transition: ease 0.3s;
+}
+.footer-link li a:hover{
+  color: greenyellow;
+}

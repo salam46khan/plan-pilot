@@ -1,0 +1,6 @@
+.footer{
+    background: linear-gradient(#0003, #0006), url('../../assets/footer.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
