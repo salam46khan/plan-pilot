@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import GoogleLogin from '../GoogleLogin';
 const Login = () => {
     const [error, setError] = useState('')
     const navigate = useNavigate()
@@ -57,6 +58,8 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <input className='my-btn w-full rounded-md hover:bg-[#ABFC2F]' type="submit" value="Log In" />
                         </div>
+                        <div className="divider divider-accent text-white">OR</div>
+                        <GoogleLogin></GoogleLogin>
                         <p className='text-white'>
                             If you are new, <Link className='text-[#ABFC2F]' to={'/signup'}>Sign Up</Link>
                         </p>

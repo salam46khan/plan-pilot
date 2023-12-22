@@ -11,7 +11,7 @@ const Banner = () => {
                     <p className='max-w-[470px] mx-auto'>
                     we are on a mission to revolutionize the way you manage tasks and streamline your workflow
                     </p>
-                    <Link className='my-btn btn-flex mx-auto' to={'/'}>
+                    <Link className='my-btn btn-flex mx-auto' to={'dashboard/home'}>
                         Let's Explore
                         <FaArrowRight></FaArrowRight>
                     </Link>

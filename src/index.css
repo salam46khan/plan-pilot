@@ -77,3 +77,11 @@
 .footer-link li a:hover{
   color: greenyellow;
 }
+
+
+.dash{
+  background: linear-gradient(#000000ab, #000000ab), url('./assets/dash.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

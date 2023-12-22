@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "pro": "Programmer",
-        "img": "https://i.ibb.co/zS1LjVG/programmer.gif"
+        "pro": "Teacher",
+        "img": "https://i.ibb.co/RzHLMsd/college.gif"
     },
     {
         "id": 2,
@@ -36,7 +36,7 @@
     },
     {
         "id": 8,
-        "pro": "Teacher",
-        "img": "https://i.ibb.co/RzHLMsd/college.gif"
+        "pro": "Programmer",
+        "img": "https://i.ibb.co/zS1LjVG/programmer.gif"
     }
 ]

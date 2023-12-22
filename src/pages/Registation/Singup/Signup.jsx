@@ -2,11 +2,14 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import GoogleLogin from "../GoogleLogin";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const Signup = () => {
     const [error, setError] = useState('')
     const {createUser} = useContext(AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
     const handleSignUp = e => {
         e.preventDefault()
@@ -35,6 +38,15 @@ const Signup = () => {
             .then(result => {
                 console.log(result.user);
                 form.reset()
+
+                const userInfo = {
+                    name, email
+                }
+                axiosPublic.post('/users', userInfo)
+                .then(res => {
+                    console.log(res.data);
+                })
+                
                 navigate('/')
                 updateProfile(result.user, {
                     displayName: name
@@ -78,9 +90,13 @@ const Signup = () => {
                         <div className="form-control mt-6">
                             <input className='my-btn w-full rounded-md hover:bg-[#ABFC2F]' type="submit" value="Sign Up" />
                         </div>
+                        <div className="divider divider-accent text-white">OR</div>
+                        <GoogleLogin></GoogleLogin>
+
                         <p className="text-white">
                             Already have account! <Link className='text-[#ABFC2F]' to={'/login'}>Log In</Link>
                         </p>
+                        
                     </form>
                 </div>
             </div>

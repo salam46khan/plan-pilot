@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BeneficiarItem from "../../components/BeneficiarItem";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Beneficiary = () => {
+    const axiosPublic = useAxiosPublic();
+
     const [benef, setBenef] = useState([]);
-    useEffect(() => {
-        fetch('beneficiary.json')
-            .then(res => res.json())
-            .then(data => setBenef(data))
-    }, [])
+    axiosPublic.get('/benefited')
+        .then(data=> {
+            // console.log(data.data);
+            setBenef(data.data)
+        })
+
     return (
         <div className="py-10 px-3 bg-slate-100">
             <div className="container mx-auto">

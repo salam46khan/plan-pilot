@@ -11,9 +11,9 @@ import { FiLogOut } from "react-icons/fi";
 
 const Header = () => {
     const [showNav, setShowNav] = useState(false)
-    const { user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         console.log('out');
         logOut()
             .then(console.log('success'))
@@ -35,19 +35,24 @@ const Header = () => {
                             <li><NavLink to={'/'}>Home</NavLink></li>
                             <li><NavLink to={'/about'}>About</NavLink></li>
                             <li><NavLink to={'/beneficiary'}>Beneficiary</NavLink></li>
-                            <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
+                            <li><NavLink to={'/contact'}>Contact Us</NavLink>
+                            </li>
+
+                            {
+                                user? <li><NavLink to={'/dashboard/home'}>Dashboard</NavLink></li> : ''
+                            }
                         </ul>
                     </div>
                     <div className="flex mx-2 items-center">
 
                         {
                             user ?
-                                <button onClick={handleLogout} className="h-10 w-10 rounded-full text-red-400 border-red-400 border-4 flex justify-center items-center tooltip tooltip-bottom" data-tip="Log Out">
+                                <button onClick={handleLogout} className="h-10 w-10 rounded-full text-red-400 border-red-400 border-4 flex justify-center items-center tooltip tooltip-bottom overflow-hidden" data-tip="Log Out">
                                     {
-                                        user?.photoURL ? 
-                                        <img className="h-full w-full" src={user?.photoURL} alt="" />
-                                        :
-                                        <FiLogOut />
+                                        user?.photoURL ?
+                                            <img className="h-full w-full" src={user?.photoURL} alt="" />
+                                            :
+                                            <FiLogOut />
                                     }
                                 </button>
                                 :

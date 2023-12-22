@@ -7,39 +7,53 @@ import Signup from "../pages/Registation/Singup/Signup";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import Beneficiary from "../pages/Beneficiary/Beneficiary";
+import PrivateRouter from "./PrivateRouter";
+import Dashboard from "../Layout/Dashboard";
+import DashHome from "../pages/Dashboard/DashHome";
 
 const Router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      errorElement: <Error></Error>,
-      children: [
-        {
-            path: '/',
-            element: <Home></Home>
-        },
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: '/signup',
-            element: <Signup></Signup>
-        },
-        {
-          path: '/about',
-          element: <About></About>
-        },
-        {
-          path: '/contact',
-          element: <Contact></Contact>
-        },
-        {
-          path: '/beneficiary',
-          element: <Beneficiary></Beneficiary>
-        }
-      ]
-    },
-  ]);
+  {
+    path: "/",
+    element: <Main></Main>,
+    errorElement: <Error></Error>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/signup',
+        element: <Signup></Signup>
+      },
+      {
+        path: '/about',
+        element: <About></About>
+      },
+      {
+        path: '/contact',
+        element: <Contact></Contact>
+      },
+      {
+        path: '/beneficiary',
+        element: <PrivateRouter><Beneficiary></Beneficiary></PrivateRouter>
+      }
+    ]
+  },
+  {
+    path: 'dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'home',
+        element: <PrivateRouter><DashHome></DashHome></PrivateRouter>
+      }
+      
+    ]
+  }
+]);
 
 export default Router;
