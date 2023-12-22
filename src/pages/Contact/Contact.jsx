@@ -8,7 +8,7 @@ const Contact = () => {
     return (
         <div className="mx-auto container py-10 px-3">
             <div className="max-w-[600px] mx-auto">
-            <form className='card-body bg-green-50 rounded-lg overflow-hidden' ref={form} onSubmit={sendEmail}>
+            <form className='card-body bg-gray-300 rounded-lg overflow-hidden' ref={form} onSubmit={sendEmail}>
                 <div className='form-control'>
                     <label>Name</label>
                     <input className="input input-bordered" type="text" name="user_name" placeholder='Name' required />
@@ -23,7 +23,7 @@ const Contact = () => {
                 </div>
 
                 <div className=' flex justify-center mt-2'>
-                    <input className='my-btn hover:bg-[#ABFC2F]  hover:text-black' type="submit" value="Send" />
+                    <input className='my-btn hover:bg-[#ABFC2F] ' type="submit" value="Send" />
                 </div>
             </form>
             </div>
