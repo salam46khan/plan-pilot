@@ -42,7 +42,7 @@ const Router = createBrowserRouter([
       },
       {
         path: '/beneficiary',
-        element: <PrivateRouter><Beneficiary></Beneficiary></PrivateRouter>
+        element: <Beneficiary></Beneficiary>
       }
     ]
   },
