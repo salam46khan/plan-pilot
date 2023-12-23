@@ -1,8 +1,9 @@
 import Lottie from "lottie-react";
 import aboutAnimation from "../../../public/to-do.json";
 import useIdentity from "../../Hooks/useIdentity";
+import Profile from "../../components/Profile";
 const About = () => {
-    const [identity] = useIdentity()
+    const identity = useIdentity()
     const pro = identity
     console.log(pro);
     return (
@@ -17,7 +18,7 @@ const About = () => {
 
                         <h2 className="text-3xl font-titleText mt-3 ">Who We Are</h2>
                         <p>
-                            We are a passionate team of developers, designers, and productivity enthusiasts dedicated to creating a seamless task management experience. With a shared commitment to innovation and user-centric design, we've crafted planPilot to be the go-to platform for anyone seeking a reliable and efficient solution for task organization and project management.
+                            We are a passionate team of developers, designers, and productivity enthusiasts dedicated to creating a seamless task management experience. With a shared commitment to innovation and user-centric design, we have crafted planPilot to be the go-to platform for anyone seeking a reliable and efficient solution for task organization and project management.
                         </p>
                     </div>
                     <div className="">
@@ -29,9 +30,10 @@ const About = () => {
                     <p>
                         We are committed to continuous improvement and ensuring that planPilot evolves with the ever-changing landscape of productivity tools. Your feedback is invaluable, and we encourage you to be part of our journey as we refine and enhance the platform.
                         <br />
-                        Join us on this exciting adventure of productivity and organization! Together, let's navigate the skies of success with planPilot.
+                        Join us on this exciting adventure of productivity and organization! Together, let s navigate the skies of success with planPilot.
                     </p>
                 </div>
+                <Profile></Profile>
             </div>
         </div>
     );

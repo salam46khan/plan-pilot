@@ -1,63 +1,69 @@
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
+
+import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import useTask from "../../Hooks/useTask";
+import { useState } from "react";
 import Swal from "sweetalert2";
+import useTask from "../../Hooks/useTask";
 
-const DashHome = () => {
-    const { user } = useContext(AuthContext)
+const TaskUpdate = () => {
+    const pathId = useParams()
+    const taskId = pathId.id;
+    const [tastData, setTaskData] = useState({})
     const axiosPublic = useAxiosPublic()
-    const [, refetch] = useTask()
+    axiosPublic.get(`task/${taskId}`)
+        .then(res => {
+            // console.log(res.data);
+            setTaskData(res.data)
+        })
 
-    const handleCreateTask = e => {
+    const [, refetch] = useTask()
+    // console.log(tastData);
+    const { _id, task, description, deadline, priority } = tastData;
+
+    const handleUpdateTask = e => {
         e.preventDefault()
+        console.log('update');
         const form = e.target;
         const task = form.task.value;
         const description = form.description.value;
         const deadline = form.deadline.value;
         const priority = form.priority.value;
 
-        const complite = false;
-        const userEmail = user.email;
-        const taskContent = { task, description, deadline, priority, complite, userEmail }
-        console.log(taskContent);
+        const updateTask = { task, description, deadline, priority }
 
-        axiosPublic.post('/task', taskContent)
-            .then(data => {
-                console.log(data.data);
-                if (data.data.insertedId) {
+        axiosPublic.put(`/task/${_id}`, updateTask)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
-                        position: "center",
                         icon: "success",
-                        title: "Your task added",
+                        title: "Your news Update successfuly",
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    form.reset()
                     refetch()
                 }
             })
-
     }
     return (
         <div className="p-5 flex justify-center items-center ">
             <div className="card shrink-0 w-full max-w-xl shadow-2xl bg-slate-100 text-xl">
                 <div className="text-center">
-                    <h2 className="text-2xl font-titleText mt-3">Create Your Task</h2>
+                    <h2 className="text-2xl font-titleText mt-3">Update Your Task</h2>
                 </div>
-                <form onSubmit={handleCreateTask} className="card-body">
+                <form onSubmit={handleUpdateTask} className="card-body">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Task</span>
                         </label>
-                        <input type="text" name="task" placeholder="task name" className="input input-bordered" required />
+                        <input type="text" name="task" defaultValue={task} className="input input-bordered" required />
                     </div>
 
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Task Description</span>
                         </label>
-                        <textarea type="text" name="description" placeholder="task description" className="textarea-bordered textarea" required />
+                        <textarea type="text" name="description" defaultValue={description} className="textarea-bordered textarea" required />
                     </div>
 
                     <div className="form-control">
@@ -69,6 +75,7 @@ const DashHome = () => {
                             className="input input-bordered text-black"
                             type="datetime-local"
                             name="deadline"
+                            defaultValue={deadline}
                         />
                     </div>
 
@@ -76,7 +83,7 @@ const DashHome = () => {
                         <label className="label">
                             <span className="label-text">Priority</span>
                         </label>
-                        <select name="priority" className="select select-bordered text-black">
+                        <select name="priority" defaultValue={priority} className="select select-bordered text-black">
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
@@ -84,7 +91,7 @@ const DashHome = () => {
                     </div>
 
                     <div className="form-control mt-6">
-                        <input className="btn bg-[#abfc2f] hover:bg-[#9ce232]" type="submit" value="Create Task" />
+                        <input className="btn bg-[#abfc2f] hover:bg-[#9ce232]" type="submit" value="Update Task" />
                     </div>
                 </form>
             </div>
@@ -92,4 +99,4 @@ const DashHome = () => {
     );
 };
 
-export default DashHome;
+export default TaskUpdate;

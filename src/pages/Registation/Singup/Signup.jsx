@@ -47,7 +47,7 @@ const Signup = () => {
                     console.log(res.data);
                 })
                 
-                navigate('/')
+                navigate('/dashboard/home')
                 updateProfile(result.user, {
                     displayName: name
                 })

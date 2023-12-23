@@ -10,6 +10,9 @@ import Beneficiary from "../pages/Beneficiary/Beneficiary";
 import PrivateRouter from "./PrivateRouter";
 import Dashboard from "../Layout/Dashboard";
 import DashHome from "../pages/Dashboard/DashHome";
+import AllTask from "../pages/Dashboard/AllTask";
+import TaskUpdate from "../pages/Dashboard/TaskUpdate";
+import ToDo from "../pages/Dashboard/ToDo";
 
 const Router = createBrowserRouter([
   {
@@ -50,6 +53,18 @@ const Router = createBrowserRouter([
       {
         path: 'home',
         element: <PrivateRouter><DashHome></DashHome></PrivateRouter>
+      },
+      {
+        path: 'task',
+        element: <PrivateRouter><AllTask></AllTask></PrivateRouter>
+      },
+      {
+        path: 'todo',
+        element: <PrivateRouter><ToDo></ToDo></PrivateRouter>
+      },
+      {
+        path: 'update/:id',
+        element: <PrivateRouter><TaskUpdate></TaskUpdate></PrivateRouter>
       }
       
     ]

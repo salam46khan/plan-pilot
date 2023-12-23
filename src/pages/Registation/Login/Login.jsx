@@ -21,7 +21,7 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 form.reset()
-                navigate('/')
+                navigate('/dashboard/home')
             })
             .catch(error => {
                 console.log(error);
